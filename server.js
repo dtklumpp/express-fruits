@@ -13,6 +13,15 @@ app.get('/fruits/:fruitIndex', (req, res) => {
     res.send(fruits[req.params.fruitIndex]);
 })
 
+app.get('/greetings', (req, res) => {
+    res.send(`Hello, ${req.query.firstName} ${req.query.lastName}`);
+})
+
+app.get('/add', (req, res) => {
+    const sum = parseInt(req.query.x) + parseInt(req.query.y);
+    res.send(`${req.query.x} + ${req.query.y} = ${sum}`);
+})
+
 
 app.listen(PORT, () => {
     console.log(`Listening for client requests on port ${PORT}`);
