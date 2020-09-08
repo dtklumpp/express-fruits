@@ -1,25 +1,22 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+// return whatever is exported from the file
+const fruits = require('./models/fruit_model.js');
 
-const fruits = ['apple', 'banana', 'pear'];
-
-app.get('/fruits/awesome', (req, res) => {
-    res.send('<h1>Fruits are awesome</h1>');
-})
-
+// show route
 app.get('/fruits/:fruitIndex', (req, res) => {
-    console.log('hit:', req.params.fruitIndex)
-    res.send(fruits[req.params.fruitIndex]);
+    // By default, Express will look inside the views
+    // directory for the specified file when .render()
+    // is called
+    res.render('show.ejs', {
+        oneFruit: fruits[req.params.fruitIndex]
+    });
 })
 
-app.get('/greetings', (req, res) => {
-    res.send(`Hello, ${req.query.firstName} ${req.query.lastName}`);
-})
-
-app.get('/add', (req, res) => {
-    const sum = parseInt(req.query.x) + parseInt(req.query.y);
-    res.send(`${req.query.x} + ${req.query.y} = ${sum}`);
+// index route
+app.get('/fruits', (req, res) => {
+    res.send(fruits);
 })
 
 
