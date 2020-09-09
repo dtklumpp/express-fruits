@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Fruit</title>
+    <title>All Fruits</title>
 </head>
 <body>
     <nav>
         <a href="/fruits/newForm">Create a New Fruit</a>
         <a href="/fruits">Go to Fruits Index</a>
     </nav>
-    <h1>Fruits show page</h1>
-    The <%= oneFruit.name %> is <%= oneFruit.color %>.
-    <% if(oneFruit.readyToEat === true) { %>
-        It is ready to eat
-    <% } else { %>
-        It is not ready to eat
-    <% } %>
+    <h1>Fruits index page</h1>
+    <ul>
+        <% for(let i = 0; i < allFruits.length; i++) { %>
+            <li>
+                <a href="/fruits/<%= i %>">
+                    <%= allFruits[i].name %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
 </body>
 </html>
