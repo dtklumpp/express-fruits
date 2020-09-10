@@ -44,5 +44,13 @@ router.delete('/:fruitIndex', (req, res) => {
     res.redirect('/fruits');
 })
 
+// edit (form) route
+router.get('/:fruitIndex/editForm', (req, res) => {
+    res.render('edit.ejs', {
+        oneFruit: fruits[req.params.fruitIndex],
+        index: req.params.fruitIndex
+    })
+})
+
 
 module.exports = router;

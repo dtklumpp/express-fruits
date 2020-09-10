@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit One Fruit</title>
+</head>
+<body>
+    <h1>Edit Fruit page</h1>
+    <form action="">
+        Name: <input type="text" name="name" value="<%= oneFruit.name %>"><br>
+        Color: <input type="text" name="color" value="<%= oneFruit.color %>"><br>
+        Is Ready To Eat:
+        <input type="checkbox" name="readyToEat"
+            <% if(oneFruit.readyToEat === true) { %>
+                checked
+            <% } %>
+        >
+    </form>
+</body>
+</html>
