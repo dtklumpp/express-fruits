@@ -52,5 +52,16 @@ router.get('/:fruitIndex/editForm', (req, res) => {
     })
 })
 
+// update route
+router.put('/:fruitIndex', (req, res) => {
+    if(req.body.readyToEat === 'on') {
+        req.body.readyToEat = true;
+    } else {
+        req.body.readyToEat = false;
+    }
+    fruits[req.params.fruitIndex] = req.body;
+    res.redirect(`/fruits/${req.params.fruitIndex}`);
+})
+
 
 module.exports = router;

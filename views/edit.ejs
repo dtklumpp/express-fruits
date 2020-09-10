@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js" defer></script>
     <title>Edit One Fruit</title>
 </head>
 <body>
+    <nav>
+        <a href="/fruits/newForm">Create a New Fruit</a>
+        <a href="/fruits">Go to Fruits Index</a>
+    </nav>
     <h1>Edit Fruit page</h1>
-    <form action="">
+    <form action="/fruits/<%= index %>?_method=PUT" method="POST">
         Name: <input type="text" name="name" value="<%= oneFruit.name %>"><br>
         Color: <input type="text" name="color" value="<%= oneFruit.color %>"><br>
         Is Ready To Eat:
@@ -15,7 +21,8 @@
             <% if(oneFruit.readyToEat === true) { %>
                 checked
             <% } %>
-        >
+        ><br>
+        <input type="submit" value="Submit Changes">
     </form>
 </body>
 </html>
