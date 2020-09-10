@@ -1,6 +1,5 @@
 // base route is /fruits
-// all routes in this file represent the balance of the url paths
-
+// all routes in this file represent the balance of the url paths (i.e., everything that follows /fruits)
 const express = require('express');
 const router = express.Router();
 const fruits = require('../models/fruit_model.js');
@@ -37,6 +36,12 @@ router.get('/', (req, res) => {
     res.render('index.ejs', {
         allFruits: fruits
     })
+})
+
+// delete route
+router.delete('/:fruitIndex', (req, res) => {
+    fruits.splice(req.params.fruitIndex, 1);
+    res.redirect('/fruits');
 })
 
 

@@ -19,6 +19,9 @@
                 <a href="/fruits/<%= i %>">
                     <%= allFruits[i].name %>
                 </a>
+                <form action="/fruits/<%= i %>?_method=DELETE" method="DELETE">
+                    <input type="submit" value="DELETE">
+                </form>
             </li>
         <% } %>
     </ul>
