@@ -4,6 +4,8 @@ const path = require('path');
 const methodOverride = require('method-override');
 const PORT = 3000;
 
+const db = require('./models');
+
 const fruitsController = require('./controllers/fruits_controllers');
 
 // middleware
