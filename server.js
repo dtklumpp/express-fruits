@@ -6,7 +6,7 @@ const PORT = 3000;
 
 const db = require('./models');
 
-const fruitsController = require('./controllers/fruits_controllers');
+const fruitsController = require('./controllers/fruits_controller');
 
 // middleware
 // takes POST and PUT requests and adds form data to request object
