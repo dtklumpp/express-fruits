@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectionStriong = 'mongodb://localhost:27017/fruits-db';
+const connectionString = 'mongodb://localhost:27017/fruits-db';
 
-mongoose.connect(connectionStriong, {
+mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

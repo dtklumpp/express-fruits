@@ -13,7 +13,7 @@
         <a href="/fruits">Go to Fruits Index</a>
     </nav>
     <h1>Edit Fruit page</h1>
-    <form action="/fruits/<%= index %>?_method=PUT" method="POST">
+    <form action="/fruits/<%= oneFruit._id %>?_method=PUT" method="POST">
         Name: <input type="text" name="name" value="<%= oneFruit.name %>"><br>
         Color: <input type="text" name="color" value="<%= oneFruit.color %>"><br>
         Is Ready To Eat:

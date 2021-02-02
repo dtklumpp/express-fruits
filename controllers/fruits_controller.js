@@ -33,13 +33,11 @@ router.post('/', (req, res) => {
     //Mongoose query
     db.Fruit.create(req.body, (err, data) => {
         err
-        ? console.log('err:', err)
-        : () => {
-            console.log('data:', data);
-            res.redirect('/fruits'); //Express request
-        }
+        ? console.log('err:', err) //; //console.log('unworky');
+        : res.redirect('/fruits'); console.log('worky'); //Express request 
     })
-
+    //oh i see, this arrow fxn thing doesn't work...
+    //just just need an IF if wanna run more than one thing
 
 
 
@@ -48,66 +46,91 @@ router.post('/', (req, res) => {
     //res.redirect('/fruits');
 })
 
-/*
+
 // show route
 router.get('/:fruitIndex', (req, res) => {
     // By default, Express will look inside the views
     // directory for the specified file when .render()
     // is called
-    res.render('show.ejs', {
-        oneFruit: fruits[req.params.fruitIndex]
-    });
+
+    db.Fruit.findById(req.params.fruitIndex, (err, data) => {
+        err ? console.log('err:', err) : res.render('show.ejs', {
+            oneFruit: data
+        });
+    })
 })
-*/
+
+
+
 
 // index route
 // Expresse route
 router.get('/', (req, res) => {
-
+    console.log('got to index route')
     //new mongoose query
     db.Fruit.find(
         {}, (err, data) => {
-            err
-            ? console.log('err:', err)
-            : () => {
-                console.log('data:', data);
-                res.render('index.ejs', { //Express response
+            console.log('got inside here')
+            err ? console.log('err:', err) : res.render('index.ejs', { //Express response
                     allFruits: data
                 });
-            }
         }
     )
-
-
 })
 
 
-/*
+
+
 //delete route
 router.delete('/:fruitIndex', (req, res) => {
-    fruits.splice(req.params.fruitIndex, 1);
-    res.redirect('/fruits');
+    //fruits.splice(req.params.fruitIndex, 1);
+    db.Fruit.findByIdAndDelete(req.params.fruitIndex, (err, data) => {
+        err
+        ? console.log('err:', err)
+        : res.redirect('/fruits');
+    })
+
+    //res.redirect('/fruits');
 });
+
+
+
 
 // edit route
 router.get('/:fruitIndex/editForm', (req, res) => {
-    res.render('edit.ejs', {
-        oneFruit: fruits[req.params.fruitIndex],
-        index: req.params.fruitIndex
-    });
+
+    db.Fruit.findById(req.params.fruitIndex, (err, data) => {
+        err
+        ? console.log('err:', err)
+        : res.render('edit.ejs', {
+            oneFruit: data,
+            index: req.params.fruitIndex
+        });
+
+    })
+
+
+
+
 });
+
 
 //update route
 router.put('/:fruitIndex', (req, res)=>{
     let index1 = req.params.fruitIndex;
-    let fruit1 = fruits[index1];
-    fruit1.name = req.body.name;
-    fruit1.color = req.body.color;
     if(req.body.readyToEat === 'on'){
-        fruit1.readyToEat = true;
+        req.body.readyToEat = true;
     } else{
-        fruit1.readyToEat = false;
+        req.body.readyToEat = false;
     }
-    res.redirect('/fruits/'+index1);
+
+    db.Fruit.findByIdAndUpdate(index1, req.body, {new: true}, (err, data) => {
+        err
+        ? console.log('err:', err)
+        : res.redirect('/fruits/'+data._id);
+    })
+
+    //let fruit1 = fruits[index1];
+    //fruit1.name = req.body.name;
+    //fruit1.color = req.body.color;
 });
-*/

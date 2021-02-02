@@ -20,7 +20,9 @@ app.use((req, res, next) => {
 
 app.use('/fruits', fruitsController);
 
-
+app.get('/', (req, res) =>{
+    res.send('ahoy there');
+})
 
 app.listen(PORT, () => {
     console.log(`Listening for client requests on port ${PORT}`);
